@@ -29,3 +29,9 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
 
 - **Exportação de dados**  
   Exporte relatórios em CSV ou PDF para acompanhar e planejar suas finanças com mais precisão.
+
+# Primeira entrega 📄
+
+O objetivo desta primeira entrega é apresentar um vislumbre das fases iniciais do projeto CashPilot. Demonstramos parte de suas funcionalidades e os caminhos de evolução, já que aprimorar a experiência do usuário será fundamental para o desenvolvimento do site. Essa base servirá como ponto de partida para a evolução do nosso trabalho, permitindo ajustes e novas implementações nas próximas etapas.
+
+
