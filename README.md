@@ -33,5 +33,6 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
 # Primeira entrega 📄
 
 O objetivo desta primeira entrega é apresentar um vislumbre das fases iniciais do projeto CashPilot. Demonstramos parte de suas funcionalidades e os caminhos de evolução, já que aprimorar a experiência do usuário será fundamental para o desenvolvimento do site. Essa base servirá como ponto de partida para a evolução do nosso trabalho, permitindo ajustes e novas implementações nas próximas etapas.
+link do docs: https://docs.google.com/document/d/1jlijs0xrzeV-NPM4gUgBaVw4Q3xnFqAh9eT5GulHkhc/edit?usp=sharing
 
 
