@@ -46,7 +46,7 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
     <a href="#">
       <img src="https://img.shields.io/badge/Screencast-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
     </a>
-    <a href="https://www.figma.com/files/team/1544678766630237673/project/444592318/Projeto-de-equipe?fuid=1544678764473156305">
+    <a href="https://www.figma.com/design/5iTcOj2skLUvP1pFgdR35E/FDS?node-id=0-1&p=f&t=iT2JsHCikoR84sHs-0">
       <img src="https://img.shields.io/badge/FIGMA%20-purple?style=for-the-badge&logo=figma&logoColor=white" />
     </a>
     <a href="https://docs.google.com/document/d/1jlijs0xrzeV-NPM4gUgBaVw4Q3xnFqAh9eT5GulHkhc/edit?usp=sharing">
