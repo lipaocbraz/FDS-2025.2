@@ -43,7 +43,7 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
    <a href="https://cesarfds.atlassian.net/jira/software/projects/SCRUM/boards/1">
       <img src="https://img.shields.io/badge/JIRA-0052CC?style=for-the-badge&logo=jira&logoColor=white" />
     </a>
-    <a href="#">
+    <a href="https://youtu.be/O7G3wPW-HjM?si=md9pXXGCMA7W5p4t">
       <img src="https://img.shields.io/badge/Screencast-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
     </a>
     <a href="https://www.figma.com/design/5iTcOj2skLUvP1pFgdR35E/FDS?node-id=0-1&p=f&t=iT2JsHCikoR84sHs-0">
