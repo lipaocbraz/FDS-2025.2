@@ -57,12 +57,12 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
   </p>
 
   ### Quadro
-  ![Quadro no Jira mostrando as histórias em prototipação](fotos/y.png)
-  ![Quadro no Jira mostrando as histórias adicionais em prototipação](fotos/x.png)
+  ![Quadro no Jira mostrando as histórias em prototipação](fotos_do_readme/y.png)
+  ![Quadro no Jira mostrando as histórias adicionais em prototipação](fotos_do_readme/x.png)
   
 
   ### Backlog
-  ![Tela do backlog no Jira com as histórias de usuário organizadas por sprint](fotos/image.png)
+  ![Tela do backlog no Jira com as histórias de usuário organizadas por sprint](fotos_do_readme/image.png)
 
 </details>
 
