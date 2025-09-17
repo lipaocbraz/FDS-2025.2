@@ -43,9 +43,4 @@ class Saldo(models.Model):
         
       
 
-#rascunho 
-#    def atualizar_saldo(self):
- #       total_entradas = Entradas.objects.aggregate(Sum("valor"))["valor__sum"] or 0
-  #      total_saidas = Saidas.objects.aggregate(Sum("valor"))["valor__sum"] or 0
-   #     self.valor = total_entradas - total_saidas
-    #    self.save()
+
