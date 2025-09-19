@@ -75,10 +75,19 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
   <br>
   <br>
   <p align="center">
+    
+    
+    
+  <a href="https://cesarfds.atlassian.net/jira/software/projects/SCRUM/boards/1">
+    <img src="https://img.shields.io/badge/JIRA-0052CC?style=for-the-badge&logo=jira&logoColor=white" />
+  </a>
+
 
   ### Relato da programação em par 
   Dupla: Bernardo e André Borges:
   A programação em dupla foi feita da seguinte maneira, Bernardo começava a fazer o código enquando André tentava perceber algum possível erro. André também ficava comentando possíveis melhorias e relatava pontos com uma ótica diferente acerca do código.
+
+  Dupla:
     
   </p>
 
