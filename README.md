@@ -76,7 +76,9 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
   <br>
   <p align="center">
     
-    
+  <a href="">
+      <img src="https://img.shields.io/badge/Screencast-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
+  </a>
     
   <a href="https://cesarfds.atlassian.net/jira/software/projects/SCRUM/boards/1">
     <img src="https://img.shields.io/badge/JIRA-0052CC?style=for-the-badge&logo=jira&logoColor=white" />
@@ -87,7 +89,12 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
   Dupla: Bernardo e André Borges:
   A programação em dupla foi feita da seguinte maneira, Bernardo começava a fazer o código enquando André tentava perceber algum possível erro. André também ficava comentando possíveis melhorias e relatava pontos com uma ótica diferente acerca do código.
 
-  Dupla:
+  menbros: Luiz Mariz, Bernardo, André, Vinicios, Júlio 
+  nos em cojunto desenvolvemos a parte do backend para as paginas de login e logout, de forma que bernardo e luiz maris escreveram o codigo enquanto os outros assumiram a função de corretores do código e proporam comentarios de melhorias.
+
+
+  
+
     
   </p>
 
