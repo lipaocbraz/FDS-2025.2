@@ -1,0 +1,76 @@
+{% extends "app1/templates/base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+
+    <style>
+        
+        body {
+            margin: 0;
+            font-family: sans-serif;
+            background-color: #f0f2f5; 
+        }
+
+
+        .card-login {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 300px;
+    margin: auto; 
+        }
+
+        .card-login label {
+    display: block;      
+    text-align: left;    
+    margin-top: 20px;    
+    margin-bottom: 5px;  
+        }
+
+        .card-login input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+        }
+
+        .card-login button {
+    width: 100%;         
+    margin-top: 20px;   
+    padding: 10px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+        }
+
+        main {
+    text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1><strong>CASH PILOT</strong></h1>
+        <section class="card-login">
+
+            <h2><strong>LOGIN</strong></h2>
+
+            <form action="#">
+                <label for="e-mail">E-mail:</label>
+                <input type="email" name="e-mail" id="e-mail">
+                <label for="senha">Senha:</label>
+                <input type="text" name="senha" id="senha">
+                <button type="submit">Entrar</button>
+            </form>
+
+        <p>Não tem uma conta? <a href="registro.html">Cadastre-se</a></p>
+        </section>    
+    </main> 
+</body>
+</html>
+{% endblock content %}
