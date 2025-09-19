@@ -67,6 +67,28 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
 </details>
 
 
+<details>
+  <summary><h2><strong>Entrega 2</strong></h2></summary>
+  <br>
+  
+
+  <br>
+  <br>
+  <p align="center">
+
+  ### Relato da programação em par 
+  Dupla: Bernardo e André Borges:
+  A programação em dupla foi feita da seguinte maneira, Bernardo começava a fazer o código enquando André tentava perceber algum possível erro. André também ficava comentando possíveis melhorias e relatava pontos com uma ótica diferente acerca do código.
+    
+  </p>
+
+
+  
+
+ 
+  
+
+</details>
 
 
 
