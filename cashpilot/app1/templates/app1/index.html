@@ -82,9 +82,12 @@
                 <li><a href="#">GRÁFICOS</a></li>
                 <li><a href="#">MOVIMENTAÇÕES FINANCEIRAS</a></li>
             </ul>
-        </nav>
-
-            <span>(NOME DE USUÁRIO)</span>   
+        </nav>   
+    
+        {% if user.is_authenticated %}
+            <span>Olá, {{ user.username }}</span>
+            <a href="{% url 'logout' %}">Sair</a>
+        {% endif %}xxx
     </header>
 
     <main>
