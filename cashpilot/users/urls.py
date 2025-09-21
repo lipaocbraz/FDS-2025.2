@@ -4,6 +4,6 @@ from . import views
 
 urlpatterns = [
     path('login', vs.LoginView.as_view(template_name = 'users/login.html'), name='login'), 
-    path('logout', vs.LogoutView.as_view(template_name = 'users/logout.html'), name='logout'),
+    path('logout', views.logout_view, name='logout'),
     path('cadastro',views.cadastro, name='cadastro'),
 ]
