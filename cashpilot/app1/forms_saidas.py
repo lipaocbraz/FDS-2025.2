@@ -4,12 +4,12 @@ from .models import Saidas
 class SaidasForm(forms.ModelForm):
     class Meta:
         model = Saidas
-        fields = ['descricao', 'valor', 'data']
+        fields = ['descricao', 'valor', 'date']
         labels = {
             'descricao': 'Descrição',
             'valor': 'Valor',
-            'data': 'Data',
+            'date': 'Date',
         }
         widgets = {
-            'data': forms.DateInput(attrs={'type': 'date'}),
+            'date': forms.DateInput(attrs={'type': 'date'}),
         }
