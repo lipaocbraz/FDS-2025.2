@@ -1,0 +1,93 @@
+{% extends "app1/base.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receita</title>
+    <link rel="stylesheet" href="receita.css">
+</head>
+
+<body>
+<header class="main-header">
+    <nav class="main-nav">
+        <ul>
+            <li><a href="#">TELA INICIAL</a></li>
+            <li><a href="#" class="active">NOVA RECEITA</a></li>
+            <li><a href="#">NOVA DESPESA</a></li>
+            <li><a href="#">GRÁFICOS</a></li>
+            <li><a href="#">MOVIMENTAÇÕES FINANCEIRAS</a></li>
+        </ul>
+    </nav> 
+
+    <div class="user-info">
+        {% if user.is_authenticated %}
+            <span>Olá, {{ user.username }}</span>
+            <a href="{% url 'logout' %}", class="nav-link">Sair</a>
+        {% else %}
+            <a href="{% url 'login' %}", class="nav-link">Entrar</a>
+        {% endif %}
+    </div>
+</header>
+
+<main>
+    <section class="form-section">
+        <form action="#" method="post" class="transaction-form">
+            
+            <div class="card card-valor">
+                <label for="valor">Valor:</label>
+                <input type="number" id="valor" name="valor" placeholder="R$ 0,00" step="1.00" required>
+            </div>
+    
+            <div class="coluna-direita">
+                <div class="card card-descricao">
+                    <label for="descricao">Descrição:</label>
+                    <textarea id="descricao" name="descricao" placeholder="Lorem ipsum dolor sit amet, consectetur"></textarea>
+                </div>
+        
+                <button type="submit" class="btn-salvar">Salvar</button>
+            </div>
+    
+        </form>
+    </section>
+
+    <section class="card card-movimentacoes">
+        <h2>Movimentações Financeiras</h2>
+    
+        <div class="tabs-container">
+            <span class="tab active">Receita</span>
+            <span class="tab">Despesas</span>
+        </div>
+    
+        <ul class="lista-transacoes">
+            <li class="transacao">
+                <div class="transacao-info">
+                    <span class="transacao-data">01/10/2002:</span>
+                    <span class="transacao-descricao">TED bank</span>
+                </div>
+                <div class="preenchimento-pontilhado"></div>
+                <span class="transacao-valor">xxx,xx</span>
+            </li>
+            <li class="transacao">
+                <div class="transacao-info">
+                    <span class="transacao-data">01/10/2002:</span>
+                    <span class="transacao-descricao">TED bank</span>
+                </div>
+                <div class="preenchimento-pontilhado"></div>
+                <span class="transacao-valor">xxx,xx</span>
+            </li>
+            <li class="transacao">
+                <div class="transacao-info">
+                    <span class="transacao-data">01/10/2002:</span>
+                    <span class="transacao-descricao">TED bank</span>
+                </div>
+                <div class="preenchimento-pontilhado"></div>
+                <span class="transacao-valor">xxx,xx</span>
+            </li>
+        </ul>
+    </section>
+</main> 
+</body>
+</html>
+{% endblock content %}
