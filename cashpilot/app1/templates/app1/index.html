@@ -1,0 +1,72 @@
+{% extends "app1/base.html" %} {% block content %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">TELA INICIAL</a></li>
+          <li><a href="#">NOVA RECEITA</a></li>
+          <li><a href="#">NOVA DESPESA</a></li>
+          <li><a href="#">GRÁFICOS</a></li>
+          <li><a href="#">MOVIMENTAÇÕES FINANCEIRAS</a></li>
+        </ul>
+      </nav>
+
+      {% if user.is_authenticated %}
+      <span>Olá, {{ user.username }}</span>
+      <a href="{% url 'logout' %}" , class="nav-link">Sair</a>
+      {% else %}
+      <a href="{% url 'login' %}" , class="nav-link">Entrar</a>
+      {% endif %}
+    </header>
+
+    <main>
+      <section class="card-saldo">
+        <h2><strong>Saldo atual:</strong></h2>
+        <p>R$ XXXX,XX</p>
+      </section>
+      <section class="card-resumo">
+        <h2>Resumo:</h2>
+        <div class="resumo-container">
+          <div>
+            <h3>Diário</h3>
+          </div>
+          <div>
+            <h3>Semanal</h3>
+          </div>
+          <div>
+            <h3>Mensal</h3>
+          </div>
+        </div>
+        <div class="resumo-graficos">
+          <div>
+            <p>Receitas:R$XXX,XX</p>
+            <p>Despezas:R$XXX,XX</p>
+            <p>Saldo:R$XXX,XX</p>
+          </div>
+          <div>
+            <img
+              src="data:image/png;base64,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"
+              alt="Gráfico"
+            />
+          </div>
+          <div>
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMrAc8VQXUGmvt8J_rh4YHOCZOGlVxGfru8Q&s"
+              alt="Estatística"
+            />
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
+{% endblock content %}
