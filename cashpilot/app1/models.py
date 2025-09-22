@@ -4,7 +4,14 @@ from django.db.models import Sum
 from django.utils import timezone
 
 class Entradas(models.Model):
-    descricao=models.CharField(max_length=100)
+    OPCOES_DESCRICAO = [
+        ('alimentacao', 'Alimentação'),
+        ('transporte', 'Transporte'),
+        ('moradia', 'Moradia'),
+        ('lazer', 'Lazer'),
+        ('outros', 'Outros'),
+        ]
+    descricao=models.CharField(max_length=100,choices=OPCOES_DESCRICAO)
     valor=models.DecimalField(default=0.0,verbose_name="valor ganho R$",max_digits=15,decimal_places=2,null=False,blank=False)
     date=models.DateField(default=timezone.now)
     def __str__(self):
