@@ -1,74 +1,12 @@
-{%extends "app1/html/base.html"%} {%block content%}
+{% extends "app1/base.html" %} {% block content %}
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-
-    <style>
-      body {
-        margin: 0;
-        font-family: sans-serif;
-        background-color: #f0f2f5;
-      }
-
-      .main-header {
-        background-color: #000;
-        color: #fff;
-        padding: 15px 30px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .main-nav ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        display: flex;
-        gap: 25px;
-      }
-
-      .main-nav a {
-        color: #fff;
-        text-decoration: none;
-        font-weight: bold;
-      }
-
-      .card-saldo {
-        background-color: white;
-        border: 1px solid #ddd;
-        border-radius: 12px;
-        margin: 30px;
-        padding: 20px;
-        width: 20%;
-      }
-
-      .card-resumo {
-        background-color: white;
-        border: 1px solid #ddd;
-        border-radius: 12px;
-        margin: 30px;
-        padding: 20px;
-        width: 80%;
-        height: 300px;
-      }
-
-      .resumo-container {
-        display: flex;
-        justify-content: space-between;
-        text-align: center;
-      }
-
-      .resumo-graficos {
-        display: flex;
-        justify-content: space-between;
-        text-align: center;
-      }
-    </style>
+    <link rel="stylesheet" href="index.css" />
   </head>
-
   <body>
     <header class="main-header">
       <nav class="main-nav">
@@ -84,6 +22,8 @@
       {% if user.is_authenticated %}
       <span>Olá, {{ user.username }}</span>
       <a href="{% url 'logout' %}" , class="nav-link">Sair</a>
+      {% else %}
+      <a href="{% url 'login' %}" , class="nav-link">Entrar</a>
       {% endif %}
     </header>
 

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fundo Gradiente - Cash Pilot</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+      }
+
+      body {
+        background: linear-gradient(
+          135deg,
+          #1e3c72 0%,
+          #2a5298 20%,
+          #4a90e2 35%,
+          #7dd3fc 50%,
+          #4ade80 65%,
+          #22c55e 100%
+        );
+        background-attachment: fixed;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+    </style>
+  </head>
+  <body>
+    {% block content %} {% endblock content%}
+  </body>
+</html>
