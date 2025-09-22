@@ -1,41 +1,39 @@
-{% extends "app1/base.html" %}
-{% block content %}
+{% extends "app1/html/base.html" %} {% block content %}
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
-    <link rel="stylesheet" href="login.css">
-</head>
-<body>
+    <link rel="stylesheet" href="login.css" />
+  </head>
+  <body>
     <main>
-        <h1><strong>CASH PILOT</strong></h1>
-        <section class="card-login">
+      <h1><strong>CASH PILOT</strong></h1>
+      <section class="card-login">
+        <h2><strong>LOGIN</strong></h2>
 
-            <h2><strong>LOGIN</strong></h2>
+        {% if form.errors %}
+        <p style="color: red">Usuário e senha não conferem. Tente novamente.</p>
+        {% endif %}
 
-            {% if form.errors %}
-                <p style="color: red;">Usuário e senha não conferem. Tente novamente.</p>
-            {% endif %}
+        <form method="post" action="{% url 'login' %}">
+          {% csrf_token %}
 
-            <form method="post" action="{% url 'login' %}">
-                {% csrf_token %}
-                
-                <label for="id_username">E-mail:</label>
-                {{ form.username }}
-                
-                <label for="id_password">Senha:</label>
-                {{ form.password }}
-                
-                <button type="submit">Entrar</button>
+          <label for="id_username">E-mail:</label>
+          {{ form.username }}
 
-                <input type="hidden" name="next" value="{% url 'index' %}"/>
-            </form>
+          <label for="id_password">Senha:</label>
+          {{ form.password }}
 
-            <p>Não tem uma conta? <a href="{% url 'cadastro' %}">Cadastre-se</a></p>
-        </section>    
-    </main> 
-</body>
+          <button type="submit">Entrar</button>
+
+          <input type="hidden" name="next" value="{% url 'index' %}" />
+        </form>
+
+        <p>Não tem uma conta? <a href="{% url 'cadastro' %}">Cadastre-se</a></p>
+      </section>
+    </main>
+  </body>
 </html>
 {% endblock content %}
