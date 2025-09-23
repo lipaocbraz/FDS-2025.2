@@ -3,6 +3,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import login,logout,authenticate
 from .forms import CustomUserCreationForm
+from .formsLogin import LoginForm
 
 
 
@@ -27,3 +28,20 @@ def cadastro(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+def login_view(request):
+    if request.method != 'POST':
+        form = LoginForm()
+    else:
+        form = LoginForm(data=request.POST)
+        if form.is_valid():
+            usuario = form.cleaned_data['login']
+            senha = form.cleaned_data['senha']
+            user = authenticate(username=usuario, password=senha)
+            if user is not None:
+                login(request, user)
+                return HttpResponseRedirect(reverse('nav'))
+            else:
+                form.add_error(None, "Usuário ou senha inválidos.")
+    context = {'form': form}
+    return render(request, 'users/html/login.html', context)
