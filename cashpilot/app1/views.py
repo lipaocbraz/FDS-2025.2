@@ -34,3 +34,6 @@ def extrato_views(request):
     saidas=Saidas.objects.order_by('-date')
     context={'entradas':entradas,'saidas':saidas}
     return render(request,'app1/html/extrato.html',context)
+@login_required
+def nav_view(request):
+    return render(request,'app1/html/nav.html')
