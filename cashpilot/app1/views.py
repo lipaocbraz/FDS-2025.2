@@ -16,7 +16,7 @@ def entradas_view(request):
             form.save()
             form = EntradasForm()
     context = {'form': form}
-    return render(request, 'app1/entradas.html', context)
+    return render(request, 'app1/html/entradas.html', context)
 @login_required
 def saidas_view(request):
     if request.method != 'POST':
@@ -27,10 +27,10 @@ def saidas_view(request):
             form.save()
             form = SaidasForm()
     context = {'form': form}
-    return render(request, 'app1/saidas.html', context)
+    return render(request, 'app1/html/saidas.html', context)
 @login_required
 def extrato_views(request):
     entradas=Entradas.objects.order_by('-date')
     saidas=Saidas.objects.order_by('-date')
     context={'entradas':entradas,'saidas':saidas}
-    return render(request,'app1/extrato.html',context)
+    return render(request,'app1/html/extrato.html',context)

@@ -19,7 +19,7 @@ def cadastro(request):
             login(request, authenticated_user)
             return HttpResponseRedirect(reverse('index'))
     context = {'form': form}
-    return render(request, 'users/cadastro.html', context)
+    return render(request, 'users/html/cadastro.html', context)
 
 def logout_view(request):
     logout(request)
