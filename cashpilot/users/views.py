@@ -3,6 +3,9 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import login,logout,authenticate
 from .forms import CustomUserCreationForm
+from django.contrib.auth.views import LoginView
+from django.urls import reverse_lazy
+
 # Create your views here.
 
 def cadastro(request):
@@ -24,3 +27,7 @@ def cadastro(request):
 def logout_view(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
+
+class MeuLoginView(LoginView):
+    template_name = 'users/html/login.html'
+    success_url = reverse_lazy('nav')
