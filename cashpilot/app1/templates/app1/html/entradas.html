@@ -1,4 +1,4 @@
-{% extends "app1/base.html" %} {% block content %}
+{% extends "app1/html/base.html" %} {% block content %}
 <form method="post" action="{% url 'entradas' %}">
 
   {%csrf_token%} {{form.as_p}}

@@ -16,6 +16,24 @@
       </style>
   </head>
   <body>
+    <header class="main-header">
+      <nav class="main-nav">
+        <ul>
+          <li><a href="#">TELA INICIAL</a></li>
+          <li><a href={% url 'entradas' %}>NOVA RECEITA</a></li>
+          <li><a href={% url 'saidas' %}>NOVA DESPESA</a></li>
+          <li><a href="#">GRÁFICOS</a></li>
+          <li><a href="#">MOVIMENTAÇÕES FINANCEIRAS</a></li>
+        </ul>
+      </nav>
+
+      {% if user.is_authenticated %}
+      <span>Olá, {{ user.username }}</span>
+      <a href="{% url 'logout' %}" , class="nav-link">Sair</a>
+      {% else %}
+      <a href="{% url 'login' %}" , class="nav-link">Entrar</a>
+      {% endif %}
+    </header>
     {% block content %} {% endblock content%}
   </body>
 </html>
