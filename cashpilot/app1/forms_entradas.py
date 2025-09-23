@@ -2,14 +2,14 @@ from django import forms
 from .models import Entradas
 
 class EntradasForm(forms.ModelForm):
-    class meta:
+    class Meta:
         model = Entradas
-        fields = ['descricao', 'valor', 'data']
+        fields = ['descricao', 'valor', 'date']
         labels = {
             'descricao': 'Descrição',
             'valor': 'Valor',
-            'data': 'Data',
+            'date': 'Date',
         }
         widgets = {
-            'data': forms.DateInput(attrs={'type': 'date'}),
+            'date': forms.DateInput(attrs={'type': 'date'}),
         }
