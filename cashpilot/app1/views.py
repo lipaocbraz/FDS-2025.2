@@ -3,7 +3,7 @@ from .forms_entradas import EntradasForm
 from .forms_saidas import SaidasForm
 from .models import Entradas,Saidas
 
-# Create your views here.
+# Create your views here
 def index(request):
     return render(request, 'app1/index.html')
 
