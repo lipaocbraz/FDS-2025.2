@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Receita</title>
-    <link rel="stylesheet" href="receita.css">
+    <link rel="stylesheet" href="css/despesa.css">
 </head>
 
 <body>
@@ -14,8 +14,8 @@
     <nav class="main-nav">
         <ul>
             <li><a href="#">TELA INICIAL</a></li>
-            <li><a href="#" class="active">NOVA RECEITA</a></li>
-            <li><a href="#">NOVA DESPESA</a></li>
+            <li><a href="#">NOVA RECEITA</a></li>
+            <li><a href="#" class="active">NOVA DESPESA</a></li>
             <li><a href="#">GRÁFICOS</a></li>
             <li><a href="#">MOVIMENTAÇÕES FINANCEIRAS</a></li>
         </ul>
@@ -34,10 +34,22 @@
 <main>
     <section class="form-section">
         <form action="#" method="post" class="transaction-form">
-            
-            <div class="card">
-                <label for="valor">Valor:</label>
-                <input type="number" id="valor" name="valor" placeholder="R$ 0,00" step="1.00" required>
+
+            <div class="coluna-esquerda">
+                <div class="card card-valor">
+                    <label for="valor">Valor:</label>
+                    <input type="number" id="valor" name="valor" placeholder="R$ 0,00" step="1.00" required>
+                </div>
+
+                <div class="card card-categoria">
+                    <label for="categoria">Categoria</label>
+                    <select id="categoria" name="categoria">
+                        <option value="alimentacao">Alimentação</option>
+                        <option value="transporte">Transporte</option>
+                        <option value="lazer">Lazer</option>
+                        <option value="outros">Outros</option>
+                    </select>
+                </div>
             </div>
     
             <div class="coluna-direita">
@@ -47,8 +59,7 @@
                 </div>
         
                 <button type="submit" class="btn-salvar">Salvar</button>
-            </div>
-    
+            </div>  
         </form>
     </section>
 
@@ -56,8 +67,8 @@
         <h2>Movimentações Financeiras</h2>
     
         <div class="tabs-container">
-            <span class="tab active">Receita</span>
-            <span class="tab">Despesas</span>
+            <span class="tab">Receita</span>
+            <span class="tab active">Despesas</span>
         </div>
     
         <ul class="lista-transacoes">
