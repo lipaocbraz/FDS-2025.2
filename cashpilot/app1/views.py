@@ -5,7 +5,7 @@ from .models import Entradas,Saidas
 from django.contrib.auth.decorators import login_required
 # Create your views here
 def index(request):
-    return render(request, 'app1/index.html')
+    return render(request, 'app1/html/index.html')
 @login_required
 def entradas_view(request):
     if request.method != 'POST':
