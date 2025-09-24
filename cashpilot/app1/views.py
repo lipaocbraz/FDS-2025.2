@@ -36,8 +36,8 @@ def saidas_view(request):
     return render(request, 'app1/html/saidas.html', context)
 @login_required
 def extrato_views(request):
-    entradas=Entradas.objects.filter(ower=request.user).order_by('-date')
-    saidas=Saidas.objects.filter(ower=request.user).order_by('-date')
+    entradas=Entradas.objects.filter(owner=request.user).order_by('-date')
+    saidas=Saidas.objects.filter(owner=request.user).order_by('-date')
     context={'entradas':entradas,'saidas':saidas}
     return render(request,'app1/html/extrato.html',context)
 @login_required
