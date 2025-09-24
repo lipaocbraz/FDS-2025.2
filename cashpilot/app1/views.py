@@ -13,6 +13,9 @@ def entradas_view(request):
     else:
         form = EntradasForm(data=request.POST)
         if form.is_valid():
+            entrada= form.save(commit=False)
+            entrada.owner=request.user
+            entrada.save()
             form.save()
             form = EntradasForm()
     context = {'form': form}
@@ -24,14 +27,17 @@ def saidas_view(request):
     else:
         form = SaidasForm(data=request.POST)
         if form.is_valid():
+            saida= form.save(commit=False)
+            saida.owner=request.user
+            saida.save()
             form.save()
             form = SaidasForm()
     context = {'form': form}
     return render(request, 'app1/html/saidas.html', context)
 @login_required
 def extrato_views(request):
-    entradas=Entradas.objects.order_by('-date')
-    saidas=Saidas.objects.order_by('-date')
+    entradas=Entradas.objects.filter(ower=request.user).order_by('-date')
+    saidas=Saidas.objects.filter(ower=request.user).order_by('-date')
     context={'entradas':entradas,'saidas':saidas}
     return render(request,'app1/html/extrato.html',context)
 @login_required
