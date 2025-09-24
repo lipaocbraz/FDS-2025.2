@@ -57,15 +57,21 @@
           <li><a href={% url 'saidas' %}>NOVA DESPESA</a></li>
           <li><a href="#">GRÁFICOS</a></li>
           <li><a href={%url 'extrato'%}>MOVIMENTAÇÕES FINANCEIRAS</a></li>
+          <li>                             </li>
+          <li>                             </li>
+
+          <li>     {% if user.is_authenticated %}
+            <span>Olá, {{ user.username }}</span>
+            <li>                             </li>
+            <li>                             </li>
+            <li>                             </li>
+            <li>                             </li>
+            <a href="{% url 'logout' %}" , class="nav-link">SAIR</a>
+            {% else %}
+            <a href="{% url 'login' %}" , class="nav-link">ENTRAR</a>
+            {% endif %}</li>
         </ul>
       </nav>
-
-      {% if user.is_authenticated %}
-      <span>Olá, {{ user.username }}</span>
-      <a href="{% url 'logout' %}" , class="nav-link">Sair</a>
-      {% else %}
-      <a href="{% url 'login' %}" , class="nav-link">Entrar</a>
-      {% endif %}
     </header>
     {% block content %} {% endblock content%}
   </body>
