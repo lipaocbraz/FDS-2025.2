@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -27,14 +28,11 @@
       max-width: 500px;
       width: 90%;
       box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-      position: relative;
     }
 
     .logo {
-      position: absolute;
-      top: 20px;
-      right: 30px;
       width: 140px;
+      margin-bottom: 20px;
     }
 
     h1 {
@@ -68,13 +66,13 @@
 </head>
 
 <body>
-  
   <div class="card">
-    <img src="logo.png" alt="CashPilot Logo" class="logo">
-    
-    <h1>O futuro financeiro começa com um pequeno passo. </h1>
+    <!-- Imagem vinda da pasta static -->
+    <img src="{% static 'app1/logo.png' %}" alt="Logo CashPilot" class="logo">
 
-    <a href={%url 'login' %}>Login</a>
+    <h1>O futuro financeiro começa com um pequeno passo.</h1>
+
+    <a href="{% url 'login' %}">Login</a>
 
     <div class="footer">
       &copy; 2025 CashPilot. Todos os direitos reservados.
