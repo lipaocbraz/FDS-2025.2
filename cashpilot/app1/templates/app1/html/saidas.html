@@ -12,19 +12,30 @@
 
   <form method="post" action="{% url 'saidas' %}">
     {% csrf_token %}
+
     <p>
       <label for="id_descricao">Descrição:</label><br>
-      <input type="text" name="descricao" id="id_descricao" required>
+      <select name="descricao" id="id_descricao" required>
+        <option value="">-- selecione --</option>
+        {% for value, label in opcoes_descricao %}
+          <option value="{{ value }}"
+            {% if value == selected_descricao %}selected{% endif %}>
+            {{ label }}
+          </option>
+        {% endfor %}
+      </select>
     </p>
 
     <p>
       <label for="id_valor">Valor:</label><br>
-      <input type="number" step="0.01" name="valor" id="id_valor" required>
+      <input type="number" step="0.01" name="valor" id="id_valor"
+             value="{{ valor|default:'' }}" required>
     </p>
 
     <p>
       <label for="id_date">Data:</label><br>
-      <input type="date" name="date" id="id_date" required>
+      <input type="date" name="date" id="id_date"
+             value="{{ date|default:'' }}" required>
     </p>
 
     <button type="submit">Enviar</button>

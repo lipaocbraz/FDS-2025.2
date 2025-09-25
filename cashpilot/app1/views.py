@@ -32,13 +32,17 @@ def entradas_view(request):
 @login_required
 def saidas_view(request):
     errors = []
+    selected_descricao = ''
+    valor = ''
+    date = ''
+
     if request.method == "POST":
-        descricao = request.POST.get("descricao", "").strip()
+        selected_descricao = request.POST.get("descricao", "").strip()
         valor = request.POST.get("valor", "").strip()
         date = request.POST.get("date", "").strip()
 
-        # Validações simples
-        if not descricao:
+        # validações
+        if not selected_descricao:
             errors.append("A descrição é obrigatória.")
         if not valor:
             errors.append("O valor é obrigatório.")
@@ -47,19 +51,27 @@ def saidas_view(request):
                 valor = float(valor)
             except ValueError:
                 errors.append("O valor deve ser numérico.")
-
         if not date:
             errors.append("A data é obrigatória.")
 
-        # Se não houver erros, salvar
+        # salvar se não houver erros
         if not errors:
-            saida = Saidas.objects.create(
-                descricao=descricao,
+            Saidas.objects.create(
+                descricao=selected_descricao,
                 valor=valor,
                 date=date,
                 owner=request.user
             )
-            return redirect("index")  # depois de salvar, redireciona
+            return redirect("index")
+
+    context = {
+        "errors": errors,
+        "opcoes_descricao": Saidas.OPCOES_DESCRICAO,
+        "selected_descricao": selected_descricao,
+        "valor": valor,
+        "date": date
+    }
+    return render(request, "app1/html/saidas.html", context)
 
     context = {"errors": errors}
     return render(request, "app1/html/saidas.html", context)
