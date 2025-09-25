@@ -6,18 +6,29 @@ def index(request):
     return render(request, 'app1/html/index.html')
 @login_required
 def entradas_view(request):
-    if request.method != 'POST':
-        form = EntradasForm()
-    else:
-        form = EntradasForm(data=request.POST)
-        if form.is_valid():
-            entrada= form.save(commit=False)
-            entrada.owner=request.user
-            entrada.save()
-            form.save()
-            form = EntradasForm()
-    context = {'form': form}
-    return render(request, 'app1/html/entradas.html', context)
+    errors = None
+    if request.method == 'POST':
+        descricao = request.POST.get("descricao")
+        valor = request.POST.get("valor")
+        date = request.POST.get("date")
+
+        if descricao and valor and date:
+            try:
+                entrada = Entradas(
+                    descricao=descricao,
+                    valor=valor,
+                    date=date,
+                    owner=request.user
+                )
+                entrada.save()
+                return redirect('entradas')  # volta pra mesma página
+            except Exception as e:
+                errors = f"Erro ao salvar: {e}"
+        else:
+            errors = "Todos os campos são obrigatórios."
+
+    context = {"errors": errors}
+    return render(request, "app1/html/entradas.html", context)
 @login_required
 def saidas_view(request):
     errors = []
