@@ -1,7 +1,7 @@
 venv/
 passos.py
 .DS_Store
-db.sqlite3
+cashpilot/db.sqlite3
 forms.py
 formsLogin.py
 forms_entradas.py
