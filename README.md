@@ -71,17 +71,17 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
   <summary><h2><strong>Entrega 2</strong></h2></summary>
   <br>
   
-
+  Dando continuidade ao projeto, iniciamos sua execução de forma prática. Nosso foco, durante esta entrega, foi utilizar três histórias de usuário previamente definidas pelo grupo. Nesta etapa, tivemos um primeiro entendimento do potencial do projeto ao colocarmos em prática a primeira entrega, o que nos preparou de forma mais sólida para o desenvolvimento das próximas fases.
   <br>
   <br>
   <p align="center">
     
-  <a href="">
-      <img src="https://img.shields.io/badge/Screencast-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
+  <a href="https://cesarfds.atlassian.net/jira/software/projects/SCRUM/boards/1">
+      <img src="https://img.shields.io/badge/JIRA-0052CC?style=for-the-badge&logo=jira&logoColor=white" />
   </a>
     
   <a href="https://cesarfds.atlassian.net/jira/software/projects/SCRUM/boards/1">
-    <img src="https://img.shields.io/badge/JIRA-0052CC?style=for-the-badge&logo=jira&logoColor=white" />
+    <img src="https://img.shields.io/badge/Screencast-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
   </a>
 
 
@@ -89,8 +89,8 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
   Dupla: Bernardo e André Borges:
   A programação em dupla foi feita da seguinte maneira, Bernardo começava a fazer o código enquando André tentava perceber algum possível erro. André também ficava comentando possíveis melhorias e relatava pontos com uma ótica diferente acerca do código.
 
-  menbros: Luiz Mariz, Bernardo, André, Vinicios, Júlio 
-  nos em cojunto desenvolvemos a parte do backend para as paginas de login e logout, de forma que bernardo e luiz maris escreveram o codigo enquanto os outros assumiram a função de corretores do código e proporam comentarios de melhorias.
+  Membros: Luiz Eduardo, Bernardo, André, Vinicios, Júlio:
+  Trabalhando em cojunto desenvolvemos a parte do backend para as páginas de login e logout, de forma que Bernardo e Luiz Eduardo escreveram o código enquanto os outros assumiram a função de corretores do código e propuseram comentários de melhorias.
 
 
   

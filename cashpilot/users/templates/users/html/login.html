@@ -1,4 +1,6 @@
-{% extends "app1/html/base.html" %} {% load static %} {% block content %}
+{% extends "app1/html/base.html" %}
+{% load static %}
+{% block content %}
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
@@ -13,18 +15,31 @@
       <section class="card-login">
         <h2><strong>LOGIN</strong></h2>
 
-        {% if form.errors %}
-        <p style="color: red">Usuário e senha não conferem. Tente novamente.</p>
+        {% if errors %}
+          <p style="color: red">{{ errors }}</p>
         {% endif %}
 
         <form method="post" action="{% url 'login' %}">
           {% csrf_token %}
 
-          <label for="id_login">nome do usuário:</label>
-          {{ form.login }}
+          <label for="id_login">Nome do usuário:</label>
+          <input 
+            type="text" 
+            id="id_login" 
+            name="login" 
+            value="{{ usuario|default:'' }}" 
+            maxlength="50" 
+            required
+          />
 
           <label for="id_senha">Senha:</label>
-          {{ form.senha }}
+          <input 
+            type="password" 
+            id="id_senha" 
+            name="senha" 
+            maxlength="50" 
+            required
+          />
 
           <button type="submit">Entrar</button>
 

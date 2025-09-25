@@ -1,9 +1,22 @@
-{% extends "app1/html/base.html" %} {% block content %}
+{% extends "app1/html/base.html" %}
+{% block content %}
 <form method="post" action="{% url 'entradas' %}">
+  {% csrf_token %}
 
-  {%csrf_token%} {{form.as_p}}
-  <button type="submit">enviar</button>
+  {% if errors %}
+    <p style="color:red">{{ errors }}</p>
+  {% endif %}
+
+  <label for="id_descricao">Descrição:</label>
+  <input type="text" id="id_descricao" name="descricao" maxlength="255" required />
+
+  <label for="id_valor">Valor:</label>
+  <input type="number" step="0.01" id="id_valor" name="valor" required />
+
+  <label for="id_date">Data:</label>
+  <input type="date" id="id_date" name="date" required />
+
+  <button type="submit">Enviar</button>
   <input type="hidden" name="next" value="{% url 'index' %}" />
 </form>
-
 {% endblock content %}

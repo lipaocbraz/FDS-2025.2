@@ -40,8 +40,8 @@ class Saldo(models.Model):
     mes_atualizacao = models.DateField(auto_now=True, verbose_name="data de atualização")
 
     def calcular_saldo(self, data_inicio, data_fim):
-        total_entradas = Entradas.objects.filter(date__range=(data_inicio, data_fim)).aggregate(Sum("valor"))["valor__sum"] or 0
-        total_saidas = Saidas.objects.filter(date__range=(data_inicio, data_fim)).aggregate(Sum("valor"))["valor__sum"] or 0
+        total_entradas = Entradas.objects.filter(owner=self.owner,date__range=(data_inicio, data_fim)).aggregate(Sum("valor"))["valor__sum"] or 0
+        total_saidas = Saidas.objects.filter(owner=self.owner,date__range=(data_inicio, data_fim)).aggregate(Sum("valor"))["valor__sum"] or 0
         saldo = total_entradas - total_saidas
         return saldo
 
@@ -49,7 +49,7 @@ class Saldo(models.Model):
         hoje = timezone.now().date()
         data_inicio = date(hoje.year, hoje.month, 1)
         data_fim= hoje
-        saldo=self.calcular_saldo(self,data_inicio,data_fim)
+        saldo=self.calcular_saldo(data_inicio,data_fim)
         return Saldo.objects.create(valor=saldo,mes_inicio=data_inicio,mes_fim=data_fim)
         
       

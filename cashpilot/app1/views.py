@@ -1,6 +1,4 @@
-from django.shortcuts import render
-from .forms_entradas import EntradasForm
-from .forms_saidas import SaidasForm
+from django.shortcuts import render, redirect
 from .models import Entradas,Saidas
 from django.contrib.auth.decorators import login_required
 # Create your views here
@@ -8,32 +6,75 @@ def index(request):
     return render(request, 'app1/html/index.html')
 @login_required
 def entradas_view(request):
-    if request.method != 'POST':
-        form = EntradasForm()
-    else:
-        form = EntradasForm(data=request.POST)
-        if form.is_valid():
-            entrada= form.save(commit=False)
-            entrada.owner=request.user
-            entrada.save()
-            form.save()
-            form = EntradasForm()
-    context = {'form': form}
-    return render(request, 'app1/html/entradas.html', context)
+    errors = None
+    if request.method == 'POST':
+        descricao = request.POST.get("descricao")
+        valor = request.POST.get("valor")
+        date = request.POST.get("date")
+
+        if descricao and valor and date:
+            try:
+                entrada = Entradas(
+                    descricao=descricao,
+                    valor=valor,
+                    date=date,
+                    owner=request.user
+                )
+                entrada.save()
+                return redirect('entradas')  # volta pra mesma página
+            except Exception as e:
+                errors = f"Erro ao salvar: {e}"
+        else:
+            errors = "Todos os campos são obrigatórios."
+
+    context = {"errors": errors}
+    return render(request, "app1/html/entradas.html", context)
 @login_required
 def saidas_view(request):
-    if request.method != 'POST':
-        form = SaidasForm()
-    else:
-        form = SaidasForm(data=request.POST)
-        if form.is_valid():
-            saida= form.save(commit=False)
-            saida.owner=request.user
-            saida.save()
-            form.save()
-            form = SaidasForm()
-    context = {'form': form}
-    return render(request, 'app1/html/saidas.html', context)
+    errors = []
+    selected_descricao = ''
+    valor = ''
+    date = ''
+
+    if request.method == "POST":
+        selected_descricao = request.POST.get("descricao", "").strip()
+        valor = request.POST.get("valor", "").strip()
+        date = request.POST.get("date", "").strip()
+
+        # validações
+        if not selected_descricao:
+            errors.append("A descrição é obrigatória.")
+        if not valor:
+            errors.append("O valor é obrigatório.")
+        else:
+            try:
+                valor = float(valor)
+            except ValueError:
+                errors.append("O valor deve ser numérico.")
+        if not date:
+            errors.append("A data é obrigatória.")
+
+        # salvar se não houver erros
+        if not errors:
+            Saidas.objects.create(
+                descricao=selected_descricao,
+                valor=valor,
+                date=date,
+                owner=request.user
+            )
+            return redirect("index")
+
+    context = {
+        "errors": errors,
+        "opcoes_descricao": Saidas.OPCOES_DESCRICAO,
+        "selected_descricao": selected_descricao,
+        "valor": valor,
+        "date": date
+    }
+    return render(request, "app1/html/saidas.html", context)
+
+    context = {"errors": errors}
+    return render(request, "app1/html/saidas.html", context)
 @login_required
 def extrato_views(request):
     entradas=Entradas.objects.filter(owner=request.user).order_by('-date')
