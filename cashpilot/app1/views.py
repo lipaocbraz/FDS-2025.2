@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
-from .models import Entradas,Saidas
+from .models import Entradas,Saidas,Saldo
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 # Create your views here
 def index(request):
     return render(request, 'app1/html/index.html')
@@ -83,4 +84,10 @@ def extrato_views(request):
     return render(request,'app1/html/extrato.html',context)
 @login_required
 def nav_view(request):
-    return render(request,'app1/html/nav.html')
+    total_entradas = Entradas.objects.filter(owner=request.user).aggregate(Sum("valor"))["valor__sum"] or 0
+    total_saidas = Saidas.objects.filter(owner=request.user).aggregate(Sum("valor"))["valor__sum"] or 0
+    saldo_geral = total_entradas - total_saidas
+    saldo = Saldo(owner=request.user, valor=saldo_geral)
+    context={'saldo': saldo}
+    return render(request,'app1/html/nav.html',context)
+   
