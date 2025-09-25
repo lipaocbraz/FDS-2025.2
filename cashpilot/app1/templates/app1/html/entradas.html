@@ -1,22 +1,46 @@
 {% extends "app1/html/base.html" %}
+{% load static %}
 {% block content %}
-<form method="post" action="{% url 'entradas' %}">
-  {% csrf_token %}
 
-  {% if errors %}
-    <p style="color:red">{{ errors }}</p>
-  {% endif %}
+<link rel="stylesheet" href="{% static 'app1/css/entradas.css' %}">
 
-  <label for="id_descricao">Descrição:</label>
-  <input type="text" id="id_descricao" name="descricao" maxlength="255" required />
+<div class="form-card">
+  <h1>Nova Receita</h1>
+  <div class="fieldset-title">Preencha os dados</div>
 
-  <label for="id_valor">Valor:</label>
-  <input type="number" step="0.01" id="id_valor" name="valor" required />
+  <form method="post" action="{% url 'entradas' %}">
+    {% csrf_token %}
 
-  <label for="id_date">Data:</label>
-  <input type="date" id="id_date" name="date" required />
+    <div class="form-grid">
+      {% if errors %}
+        <div class="form-error">{{ errors }}</div>
+      {% endif %}
 
-  <button type="submit">Enviar</button>
-  <input type="hidden" name="next" value="{% url 'index' %}" />
-</form>
+      <div class="form-group">
+        <label for="id_descricao">Descrição</label>
+        <input class="form-control" type="text" id="id_descricao" name="descricao" maxlength="255" required />
+      </div>
+
+      <div class="form-group">
+        <label for="id_valor">Valor</label>
+        <input class="form-control" type="number" step="0.01" id="id_valor" name="valor" required />
+      </div>
+
+      <div class="form-group" style="grid-column:1/-1; max-width:320px;">
+        <label for="id_date">Data</label>
+        <input class="form-control" type="date" id="id_date" name="date" required />
+      </div>
+
+      <div class="form-divider"></div>
+    </div>
+
+    <div class="actions">
+      <button class="btn" type="submit">Enviar</button>
+    </div>
+
+    <input type="hidden" name="next" value="{% url 'index' %}" />
+  </form>
+</div>
+
 {% endblock content %}
+
