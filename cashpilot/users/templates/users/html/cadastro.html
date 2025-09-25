@@ -1,10 +1,21 @@
+{% extends "app1/html/base.html" %}
+{% load static %}
 
-<form method="post" action="{% url 'cadastro' %}">
-  <!--quem for fazer o front da pagina de cadastro precisa 
-    incluir esses comandos do django-->
-  {%csrf_token%} {{form.as_p}}
-  <button type="submit">cadastrar</button>
-  <input type="hidden" name="next" value="{% url 'index' %}" />
-</form>
+{% block content %}
 
+<main>
+  <section class="card-register">
+    <h2>CADASTRO</h2>
+    <form method="post" action="{% url 'cadastro' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
 
+      <button type="submit">Cadastrar</button>
+      <input type="hidden" name="next" value="{% url 'index' %}" />
+    </form>
+    <p>Já tem conta? <a href="{% url 'login' %}">Entre aqui</a></p>
+  </section>
+</main>
+
+<link rel="stylesheet" href="{% static 'users/css/cadastro.css' %}">
+{% endblock %}

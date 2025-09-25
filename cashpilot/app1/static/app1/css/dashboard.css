@@ -1,0 +1,103 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Fundo geral */
+body {
+    background: linear-gradient(120deg, #000000 45%, #000000 55%, #b8860b 65%);
+    color: #fff;
+    min-height: 100vh;
+}
+
+/* Main centralizado */
+main {
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+/* CARD SALDO */
+.card-saldo {
+    background: #fff;
+    color: #000;
+    width: 320px;
+    padding: 25px 20px;
+    border-radius: 20px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: bold;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.card-saldo h2 {
+    font-size: 1.3rem;
+    margin-bottom: 10px;
+}
+
+.card-saldo p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #021047;
+}
+
+/* CARD RESUMO */
+.card-resumo {
+    background: #fff;
+    color: #000;
+    width: 90%;
+    max-width: 950px;
+    padding: 30px 25px;
+    border-radius: 20px;
+    box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.card-resumo h2 {
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+/* Container dos títulos (Diário / Semanal / Mensal) */
+.resumo-container {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+.resumo-container h3 {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+/* Gráficos + texto */
+.resumo-graficos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.resumo-graficos>div {
+    flex: 1;
+    text-align: center;
+}
+
+.resumo-graficos p {
+    margin: 6px 0;
+    font-size: 0.95rem;
+}
+
+.resumo-graficos img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.3);
+}
