@@ -55,7 +55,11 @@
     a:hover {
       background: #696868;
     }
-
+    .logo {
+      width: 250px;
+      height: 250px;
+      margin-bottom: 20px;
+    }
     .footer {
       text-align: center;
       margin-top: 30px;
@@ -70,7 +74,7 @@
     <!-- Imagem vinda da pasta static -->
     <img src="{% static 'app1/css/logo.png' %}" alt="Logo CashPilot" class="logo">
 
-    <h1>O futuro financeiro começa com um pequeno passo.</h1>
+    <h1>O seu futuro financeiro começa com um pequeno passo.</h1>
 
     <a href="{% url 'login' %}">Login</a>
 
