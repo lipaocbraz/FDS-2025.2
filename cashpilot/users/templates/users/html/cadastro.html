@@ -6,13 +6,33 @@
 <main>
   <section class="card-register">
     <h2>CADASTRO</h2>
+
+    {% if errors %}
+      <ul class="errorlist">
+        {% for error in errors %}
+          <li>{{ error }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
     <form method="post" action="{% url 'cadastro' %}">
       {% csrf_token %}
-      {{ form.as_p }}
-
+      <p>
+        <label for="id_username">Nome de usuário:</label><br>
+        <input type="text" name="username" id="id_username" required>
+      </p>
+      <p>
+        <label for="id_password1">Senha:</label><br>
+        <input type="password" name="password1" id="id_password1" required>
+      </p>
+      <p>
+        <label for="id_password2">Confirme sua senha:</label><br>
+        <input type="password" name="password2" id="id_password2" required>
+      </p>
       <button type="submit">Cadastrar</button>
       <input type="hidden" name="next" value="{% url 'index' %}" />
     </form>
+
     <p>Já tem conta? <a href="{% url 'login' %}">Entre aqui</a></p>
   </section>
 </main>

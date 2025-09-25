@@ -1,29 +1,48 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import login,logout,authenticate
-from .forms import CustomUserCreationForm
 from .formsLogin import LoginForm
+from django.contrib.auth.models import User
+
+
 
 
 
 # Create your views here.
-
 def cadastro(request):
-    if request.method != 'POST':
-        form = CustomUserCreationForm()
-    else:
-        form = CustomUserCreationForm(data=request.POST)
-        if form.is_valid():
-            new_user = form.save()
-            authenticated_user = authenticate(
-                username=new_user.username,
-                password=request.POST['password1']
+    errors = []
+    if request.method == "POST":
+        username = request.POST.get("username", "").strip()
+        password1 = request.POST.get("password1", "").strip()
+        password2 = request.POST.get("password2", "").strip()
+
+        # validações básicas
+        if not username:
+            errors.append("O nome de usuário é obrigatório.")
+        if not password1 or not password2:
+            errors.append("A senha e a confirmação são obrigatórias.")
+        if password1 != password2:
+            errors.append("As senhas não coincidem.")
+        if User.objects.filter(username=username).exists():
+            errors.append("Esse nome de usuário já está em uso.")
+
+        if not errors:
+            new_user = User.objects.create_user(
+                username=username,
+                password=password1
             )
-            login(request, authenticated_user)
-            return HttpResponseRedirect(reverse('index'))
-    context = {'form': form}
-    return render(request, 'users/html/cadastro.html', context)
+            new_user.save()
+            authenticated_user = authenticate(
+                username=username,
+                password=password1
+            )
+            if authenticated_user:
+                login(request, authenticated_user)
+                return redirect('index')
+
+    context = {"errors": errors}
+    return render(request, "users/html/cadastro.html", context)
 
 def logout_view(request):
     logout(request)
