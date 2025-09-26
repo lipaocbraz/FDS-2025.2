@@ -7,3 +7,4 @@ formsLogin.py
 forms_entradas.py
 forms_saidas.py
 form.txt
+db.sqlite3
