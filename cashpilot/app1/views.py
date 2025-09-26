@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from .models import Entradas,Saidas,Saldo
 from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
+import matplotlib.pyplot as plt
+import numpy as np
 # Create your views here
 def index(request):
     return render(request, 'app1/html/index.html')
@@ -90,4 +92,24 @@ def nav_view(request):
     saldo = Saldo(owner=request.user, valor=saldo_geral)
     context={'saldo': saldo}
     return render(request,'app1/html/nav.html',context)
-   
+
+
+
+def grafico_entradas_saidas(request):
+    ano= object.date.year
+    mes= object.date.month
+    entradas=Entradas.objects.filter(owner=request.user,date__year=ano,date__month=mes).aggregate(Sum("valor"))["valor__sum"] or 0
+    saidas=Saidas.objects.filter(owner=request.user,date__year=ano,date__month=mes).aggregate(Sum("valor"))["valor__sum"] or 0
+    x = ['Entradas', 'Saídas']
+    y = [entradas, saidas]
+    posicao=np.arange(len(x))
+    largura=0.5
+    plt.bar(posicao, y, width=largura, color=['green', 'red'])
+    plt.xticks(posicao, x)
+    plt.ylabel('Valor')
+    plt.title(f'Entradas e Saídas - {mes}/{ano}')
+
+    
+
+    
+    
