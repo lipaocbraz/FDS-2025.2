@@ -1,10 +1,10 @@
 # CashPilot – Planner Financeiro Pessoal 💵
 
-O **CashPilot** é um planner financeiro pessoal projetado para ajudá-lo a gerenciar suas finanças de forma prática e eficiente.  
+O **CashPilot** é um planner financeiro pessoal projetado para ajudá-lo a gerenciar suas finanças de forma prática e eficiente.
 
-- **Controle de receitas e despesas:** acompanhe todos os seus gastos e entradas em um só lugar.  
-- **Gráficos de evolução financeira:** visualize o crescimento do seu saldo e padrões de consumo ao longo do tempo.  
-- **Alertas de limite de gastos:** receba notificações automáticas ao se aproximar do limite definido, evitando surpresas no final do mês.  
+- **Controle de receitas e despesas:** acompanhe todos os seus gastos e entradas em um só lugar.
+- **Gráficos de evolução financeira:** visualize o crescimento do seu saldo e padrões de consumo ao longo do tempo.
+- **Alertas de limite de gastos:** receba notificações automáticas ao se aproximar do limite definido, evitando surpresas no final do mês.
 
 Com o CashPilot, planejar e organizar seu orçamento fica mais simples e seguro!
 
@@ -30,8 +30,6 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
 - **Exportação de dados**  
   Exporte relatórios em CSV ou PDF para acompanhar e planejar suas finanças com mais precisão.
 
-
-
 <details>
   <summary><h2><strong>Entrega 1</strong></h2></summary>
   <br>
@@ -56,16 +54,16 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
     
   </p>
 
-  ### Quadro
-  ![Quadro no Jira mostrando as histórias em prototipação](fotos_do_readme/y.png)
-  ![Quadro no Jira mostrando as histórias adicionais em prototipação](fotos_do_readme/x.png)
-  
+### Quadro
 
-  ### Backlog
-  ![Tela do backlog no Jira com as histórias de usuário organizadas por sprint](fotos_do_readme/image.png)
+![Quadro no Jira mostrando as histórias em prototipação](fotos_do_readme/y.png)
+![Quadro no Jira mostrando as histórias adicionais em prototipação](fotos_do_readme/x.png)
+
+### Backlog
+
+![Tela do backlog no Jira com as histórias de usuário organizadas por sprint](fotos_do_readme/image.png)
 
 </details>
-
 
 <details>
   <summary><h2><strong>Entrega 2</strong></h2></summary>
@@ -84,27 +82,18 @@ O **CashPilot** oferece ferramentas completas para gerenciar suas finanças pess
     <img src="https://img.shields.io/badge/Screencast-FF0000?style=for-the-badge&logo=youtube&logoColor=white" />
   </a>
 
+### Quadro
 
-  ### Relato da programação em par 
-  Dupla: Bernardo e André Borges:
-  A programação em dupla foi feita da seguinte maneira, Bernardo começava a fazer o código enquando André tentava perceber algum possível erro. André também ficava comentando possíveis melhorias e relatava pontos com uma ótica diferente acerca do código.
+![Quadro](https://github.com/user-attachments/assets/3095d0c7-04fb-4580-a294-1c9828826b9f)
 
-  Membros: Luiz Eduardo, Bernardo, André, Vinicios, Júlio:
-  Trabalhando em cojunto desenvolvemos a parte do backend para as páginas de login e logout, de forma que Bernardo e Luiz Eduardo escreveram o código enquanto os outros assumiram a função de corretores do código e propuseram comentários de melhorias.
+### Relato da programação em par
 
+Dupla: Bernardo e André Borges:
+A programação em dupla foi feita da seguinte maneira, Bernardo começava a fazer o código enquando André tentava perceber algum possível erro. André também ficava comentando possíveis melhorias e relatava pontos com uma ótica diferente acerca do código.
 
-  
+Membros: Luiz Eduardo, Bernardo, André, Vinicios, Júlio:
+Trabalhando em cojunto desenvolvemos a parte do backend para as páginas de login e logout, de forma que Bernardo e Luiz Eduardo escreveram o código enquanto os outros assumiram a função de corretores do código e propuseram comentários de melhorias.
 
-    
   </p>
 
-
-  
-
- 
-  
-
 </details>
-
-
-
