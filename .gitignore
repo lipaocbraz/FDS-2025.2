@@ -1,10 +1,12 @@
+# Ambiente virtual Python
 venv/
-passos.py
+
+# Arquivos temporários e de sistema operacional
 .DS_Store
-cashpilot/db.sqlite3
-forms.py
-formsLogin.py
-forms_entradas.py
-forms_saidas.py
+
+# Arquivos de banco de dados
+*.sqlite3
+
+# Arquivos temporários ou gerados (verificar se devem ser ignorados)
+passos.py
 form.txt
-db.sqlite3
