@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 import matplotlib.pyplot as plt
 import numpy as np
+import datetime
 # Create your views here
 def index(request):
     return render(request, 'app1/html/index.html')
@@ -108,6 +109,32 @@ def grafico_entradas_saidas(request):
     plt.xticks(posicao, x)
     plt.ylabel('Valor')
     plt.title(f'Entradas e Saídas - {mes}/{ano}')
+
+
+def grafico_saldo(request):
+    ano = datetime.today().year
+
+    meses = range(1, 13)
+    saldo_positivo = []
+    saldo_negativo = []
+
+    for mes in meses:
+        saldos = Saldo.objects.filter(owner=request.user, date__year=ano, date__month=mes)
+        saldo_p = sum(s.valor for s in saldos if s.valor > 0)
+        saldo_n = sum(s.valor for s in saldos if s.valor <= 0)
+        saldo_positivo.append(saldo_p)
+        saldo_negativo.append(saldo_n)
+    x = np.arange(len(meses))
+    largura = 0.35
+    plt.figure(figsize=(10,5))
+    plt.bar(x - largura/2, saldo_positivo, width=largura, color='green', label='Positivo')
+    plt.bar(x + largura/2, saldo_negativo, width=largura, color='red', label='Negativo')
+    plt.xticks(x, [f'Mês {m}' for m in meses])
+    plt.ylabel('Valor')
+    plt.title(f'Análise do Saldo - Ano {ano}')
+    plt.legend()
+
+
 
     
 
