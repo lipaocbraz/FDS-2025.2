@@ -77,8 +77,7 @@ def saidas_view(request):
     }
     return render(request, "app1/html/saidas.html", context)
 
-    context = {"errors": errors}
-    return render(request, "app1/html/saidas.html", context)
+   
 @login_required
 def extrato_views(request):
     entradas=Entradas.objects.filter(owner=request.user).order_by('-date')
@@ -95,7 +94,7 @@ def nav_view(request):
     return render(request,'app1/html/nav.html',context)
 
 
-
+@login_required
 def grafico_entradas_saidas(request):
     ano= object.date.year
     mes= object.date.month
@@ -110,7 +109,7 @@ def grafico_entradas_saidas(request):
     plt.ylabel('Valor')
     plt.title(f'Entradas e Saídas - {mes}/{ano}')
 
-
+@login_required
 def grafico_saldo(request):
     ano = datetime.today().year
 
