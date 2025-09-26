@@ -48,6 +48,7 @@ main {
 
 /* CARD RESUMO */
 .card-resumo {
+    margin-top: 20vh;
     background: #fff;
     color: #000;
     width: 90%;
