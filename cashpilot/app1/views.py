@@ -32,7 +32,7 @@ def entradas_view(request):
             errors = "Todos os campos são obrigatórios."
 
     context = {"errors": errors}
-    return render(request, "app1/html/entradas.html", context)
+    return render(request, "app1/html/nav.html", context)
 @login_required
 def saidas_view(request):
     errors = []
@@ -66,7 +66,7 @@ def saidas_view(request):
                 date=date,
                 owner=request.user
             )
-            return redirect("index")
+            return redirect("app1/html/nav.html")
 
     context = {
         "errors": errors,
