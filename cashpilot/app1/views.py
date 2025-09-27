@@ -5,28 +5,34 @@ from django.db.models import Sum
 import matplotlib.pyplot as plt
 import numpy as np
 import datetime
-# Create your views here
+from django.utils import timezone
+from datetime import date 
+
+
 def index(request):
     return render(request, 'app1/html/index.html')
+
 @login_required
 def entradas_view(request):
     errors = None
     if request.method == 'POST':
         descricao = request.POST.get("descricao")
         valor = request.POST.get("valor")
-        date = request.POST.get("date")
+        date_str = request.POST.get("date") 
 
-        if descricao and valor and date:
+        if descricao and valor and date_str:
             try:
                 valor = float(valor)
                 entrada = Entradas(
                     descricao=descricao,
                     valor=valor,
-                    date=date,
+                    date=date_str, 
                     owner=request.user
                 )
                 entrada.save()
-                return redirect('entradas')  # volta pra mesma página
+                Saldo.criar_registro_saldo_apos_transacao(request.user)
+                
+                return redirect('entradas')  
             except Exception as e:
                 errors = f"Erro ao salvar: {e}"
         else:
@@ -34,19 +40,20 @@ def entradas_view(request):
 
     context = {"errors": errors}
     return render(request, "app1/html/entradas.html", context)
+
 @login_required
 def saidas_view(request):
     errors = []
     selected_descricao = ''
     valor = ''
-    date = ''
+    date_str = ''
 
     if request.method == "POST":
         selected_descricao = request.POST.get("descricao", "").strip()
         valor = request.POST.get("valor", "").strip()
-        date = request.POST.get("date", "").strip()
+        date_str = request.POST.get("date", "").strip()
 
-        # validações
+        
         if not selected_descricao:
             errors.append("A descrição é obrigatória.")
         if not valor:
@@ -56,17 +63,21 @@ def saidas_view(request):
                 valor = float(valor)
             except ValueError:
                 errors.append("O valor deve ser numérico.")
-        if not date:
+        if not date_str:
             errors.append("A data é obrigatória.")
 
-        # salvar se não houver erros
+        
         if not errors:
             Saidas.objects.create(
                 descricao=selected_descricao,
                 valor=valor,
-                date=date,
+                date=date_str,
                 owner=request.user
             )
+            
+            
+            Saldo.criar_registro_saldo_apos_transacao(request.user)
+            
             return redirect("saidas")
 
     context = {
@@ -74,33 +85,41 @@ def saidas_view(request):
         "opcoes_descricao": Saidas.OPCOES_DESCRICAO,
         "selected_descricao": selected_descricao,
         "valor": valor,
-        "date": date
+        "date": date_str
     }
     return render(request, "app1/html/saidas.html", context)
 
-   
 @login_required
 def extrato_views(request):
     entradas=Entradas.objects.filter(owner=request.user).order_by('-date')
     saidas=Saidas.objects.filter(owner=request.user).order_by('-date')
     context={'entradas':entradas,'saidas':saidas}
     return render(request,'app1/html/extrato.html',context)
+
 @login_required
 def nav_view(request):
-    total_entradas = Entradas.objects.filter(owner=request.user).aggregate(Sum("valor"))["valor__sum"] or 0
-    total_saidas = Saidas.objects.filter(owner=request.user).aggregate(Sum("valor"))["valor__sum"] or 0
-    saldo_geral = total_entradas - total_saidas
-    saldo = Saldo(owner=request.user, valor=saldo_geral)
+    
+    try:
+        
+        saldo = Saldo.objects.filter(owner=request.user).latest('data_registro')
+    except Saldo.DoesNotExist:
+        
+        saldo = Saldo(owner=request.user, valor=0.0)
+        
     context={'saldo': saldo}
     return render(request,'app1/html/nav.html',context)
 
-
 @login_required
 def grafico_entradas_saidas(request):
-    ano= object.date.year
-    mes= object.date.month
-    entradas=Entradas.objects.filter(owner=request.user,date__year=ano,date__month=mes).aggregate(Sum("valor"))["valor__sum"] or 0
-    saidas=Saidas.objects.filter(owner=request.user,date__year=ano,date__month=mes).aggregate(Sum("valor"))["valor__sum"] or 0
+    
+    hoje = datetime.date.today()
+    ano = hoje.year
+    mes = hoje.month
+    
+    
+    entradas = Entradas.objects.filter(owner=request.user, date__year=ano, date__month=mes).aggregate(Sum("valor"))["valor__sum"] or 0
+    saidas = Saidas.objects.filter(owner=request.user, date__year=ano, date__month=mes).aggregate(Sum("valor"))["valor__sum"] or 0
+    
     x = ['Entradas', 'Saídas']
     y = [entradas, saidas]
     posicao=np.arange(len(x))
@@ -110,33 +129,38 @@ def grafico_entradas_saidas(request):
     plt.ylabel('Valor')
     plt.title(f'Entradas e Saídas - {mes}/{ano}')
 
+
+
 @login_required
 def grafico_saldo(request):
-    ano = datetime.today().year
+    ano = datetime.date.today().year 
+    
+    saldos_anuais = []
+    
+    
+    for mes in range(1, 13):
+        try:
+            ultimo_saldo = Saldo.objects.filter(
+                owner=request.user,
+                data_registro__year=ano,
+                data_registro__month=mes
+            ).latest('data_registro')
+            saldos_anuais.append(ultimo_saldo.valor)
+        except Saldo.DoesNotExist:
+            saldos_anuais.append(0) 
 
-    meses = range(1, 13)
-    saldo_positivo = []
-    saldo_negativo = []
+    
+    meses_rotulos = range(1, 13)
+    saldo_positivo = [s if s > 0 else 0 for s in saldos_anuais]
+    saldo_negativo = [abs(s) if s < 0 else 0 for s in saldos_anuais] 
 
-    for mes in meses:
-        saldos = Saldo.objects.filter(owner=request.user, date__year=ano, date__month=mes)
-        saldo_p = sum(s.valor for s in saldos if s.valor > 0)
-        saldo_n = sum(s.valor for s in saldos if s.valor <= 0)
-        saldo_positivo.append(saldo_p)
-        saldo_negativo.append(saldo_n)
-    x = np.arange(len(meses))
+    x = np.arange(len(meses_rotulos))
     largura = 0.35
     plt.figure(figsize=(10,5))
+    
     plt.bar(x - largura/2, saldo_positivo, width=largura, color='green', label='Positivo')
     plt.bar(x + largura/2, saldo_negativo, width=largura, color='red', label='Negativo')
-    plt.xticks(x, [f'Mês {m}' for m in meses])
+    plt.xticks(x, [f'Mês {m}' for m in meses_rotulos])
     plt.ylabel('Valor')
-    plt.title(f'Análise do Saldo - Ano {ano}')
+    plt.title(f'Análise do Saldo Mensal (Final do Mês) - Ano {ano}')
     plt.legend()
-
-
-
-    
-
-    
-    
