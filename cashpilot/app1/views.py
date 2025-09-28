@@ -4,9 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Sum
 import matplotlib.pyplot as plt
 import numpy as np
-import datetime
+import datetime, json
 from django.utils import timezone
-from datetime import date 
+from datetime import date
 
 
 def index(request):
@@ -110,57 +110,41 @@ def nav_view(request):
     return render(request,'app1/html/nav.html',context)
 
 @login_required
-def grafico_entradas_saidas(request):
+def dashboard(request):
+
+    ano = datetime.date.today().year
+    mes = datetime.date.today().month
+
     
-    hoje = datetime.date.today()
-    ano = hoje.year
-    mes = hoje.month
-    
+    saldos_anuais = []
+    for m in range(1, 13):
+        try:
+            ultimo_saldo = Saldo.objects.filter(owner=request.user, data_registro__year=ano, data_registro__month=m).latest('data_registro')
+            saldos_anuais.append(float(ultimo_saldo.valor))
+        except Saldo.DoesNotExist:
+            saldos_anuais.append(0.0)
+
+    meses_rotulos = [f"Mês {m}" for m in range(1, 13)]
+    saldo_positivo = [s if s > 0 else 0 for s in saldos_anuais]
+    saldo_negativo = [abs(s) if s < 0 else 0 for s in saldos_anuais]
+    saldo_liquido = saldos_anuais
+
     
     entradas = Entradas.objects.filter(owner=request.user, date__year=ano, date__month=mes).aggregate(Sum("valor"))["valor__sum"] or 0
     saidas = Saidas.objects.filter(owner=request.user, date__year=ano, date__month=mes).aggregate(Sum("valor"))["valor__sum"] or 0
-    
-    x = ['Entradas', 'Saídas']
-    y = [entradas, saidas]
-    posicao=np.arange(len(x))
-    largura=0.5
-    plt.bar(posicao, y, width=largura, color=['green', 'red'])
-    plt.xticks(posicao, x)
-    plt.ylabel('Valor')
-    plt.title(f'Entradas e Saídas - {mes}/{ano}')
 
 
+    saidas_por_categoria = Saidas.objects.filter(owner=request.user, date__year=ano, date__month=mes).values("descricao").annotate(total=Sum("valor"))
 
-@login_required
-def grafico_saldo(request):
-    ano = datetime.date.today().year 
-    
-    saldos_anuais = []
-    
-    
-    for mes in range(1, 13):
-        try:
-            ultimo_saldo = Saldo.objects.filter(
-                owner=request.user,
-                data_registro__year=ano,
-                data_registro__month=mes
-            ).latest('data_registro')
-            saldos_anuais.append(ultimo_saldo.valor)
-        except Saldo.DoesNotExist:
-            saldos_anuais.append(0) 
-
-    
-    meses_rotulos = range(1, 13)
-    saldo_positivo = [s if s > 0 else 0 for s in saldos_anuais]
-    saldo_negativo = [abs(s) if s < 0 else 0 for s in saldos_anuais] 
-
-    x = np.arange(len(meses_rotulos))
-    largura = 0.35
-    plt.figure(figsize=(10,5))
-    
-    plt.bar(x - largura/2, saldo_positivo, width=largura, color='green', label='Positivo')
-    plt.bar(x + largura/2, saldo_negativo, width=largura, color='red', label='Negativo')
-    plt.xticks(x, [f'Mês {m}' for m in meses_rotulos])
-    plt.ylabel('Valor')
-    plt.title(f'Análise do Saldo Mensal (Final do Mês) - Ano {ano}')
-    plt.legend()
+    context = {
+        "ano": ano,
+        "mes": mes,
+        "meses_rotulos": json.dumps(meses_rotulos),
+        "saldo_positivo": json.dumps(saldo_positivo),
+        "saldo_negativo": json.dumps(saldo_negativo),
+        "saldo_liquido": json.dumps(saldo_liquido),
+        "entradas": float(entradas),
+        "saidas": float(saidas),
+        "saidas_por_categoria": saidas_por_categoria,
+    }
+    return render(request, "app1/html/dashboard.html", context)
