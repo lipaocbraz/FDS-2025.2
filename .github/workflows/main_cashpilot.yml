@@ -49,8 +49,7 @@ jobs:
 
       - name: Zip artifact for deployment
         run: |
-          zip release.zip ./* -r
-          mv cashpilot/release.zip .
+          zip -r release.zip ./*
 
   deploy:
     runs-on: ubuntu-latest
