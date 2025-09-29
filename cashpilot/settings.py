@@ -27,6 +27,7 @@ TARGET_ENV = os.getenv('TARGET_ENV')
 print(TARGET_ENV)
 NOT_PROD = not TARGET_ENV.lower().startswith('prod')
 
+
 if NOT_PROD:
     # SECURITY WARNING: don't run with debug turned on in production!
     DEBUG = True
